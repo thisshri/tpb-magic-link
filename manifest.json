@@ -6,5 +6,14 @@
   "action": {
     "default_popup": "popup/popup.html",
     "default_icon": "magic.png"
-  }
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://thepiratebay10.info/*"
+      ],
+      "css": ["styles/content-style.css"],
+      "js": ["scripts/content-script.js"]
+    }
+  ]
 }
