@@ -1,19 +1,30 @@
-const preTag = document.querySelector("pre");
-const description = preTag?.textContent;
+function main() {
+  const preTag = document.querySelector("pre");
+  const description = preTag?.textContent;
+  if (!description) return;
 
-const regex = /https:\/\/[^\n]*/g;
+  const regex = /https:\/\/[^\n]*/g;
+  const mainSection = document.querySelector("#main-content");
 
-if (description) {
   const matches = description.match(regex);
 
-  if (matches?.length) {
-    const mainSection = document.querySelector("#main-content");
+  const createIframeSequentially = (index=0) => {
+    console.log('index', index)
 
-    for (const link of matches) {
+    if (index < matches.length) {
       const iframe = document.createElement("iframe")
-      iframe.src = link
 
-      mainSection.insertAdjacentElement('afterend', iframe)
+      iframe.src = matches[index]
+
+      iframe.addEventListener("load", () => {
+          createIframeSequentially(index + 1);
+        })
+
+      mainSection.parentElement.insertAdjacentElement('afterend', iframe)
     }
   }
+
+  createIframeSequentially(0)
 }
+
+main()
