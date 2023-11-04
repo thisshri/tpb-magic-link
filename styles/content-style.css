@@ -1,6 +1,5 @@
 iframe {
   width: 100%;
-  min-height: 300vh;
-
-  border: none; /* Optional: Remove borders if any */
+  height: 100vh;
+  border: none;
 }
