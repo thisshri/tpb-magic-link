@@ -20,7 +20,7 @@ function main() {
           createIframeSequentially(index + 1);
         })
 
-      mainSection.parentElement.insertAdjacentElement('afterend', iframe)
+      mainSection.parentElement.appendChild(iframe)
     }
   }
 
